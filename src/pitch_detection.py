@@ -5,7 +5,7 @@ file_name = 'Song_for_Ellen.txt'
 with open('P_{}'.format(file_name), 'r') as f:
     file_reader = f.readlines()
 
-#write into lines, line [time][freq(4200)]
+# Write into lines, line [time][freq(4200)]
 lines = []
 for line in file_reader:
     line = line.strip()
@@ -13,9 +13,9 @@ for line in file_reader:
     line = [int(num) for num in line]
     lines.append(line)
 
-#find frequencies with significantly high amplitudes
-#and store them in a dictionary
-#where the key is time and the value is of type list
+# Find frequencies with significantly high amplitudes
+# and store them in a dictionary
+# where the key is time and the value is of type list
 sig_freq = {}
 for time, line in enumerate(lines):
     threshhold = sts.fmean(line) + 4*sts.stdev(line) #NOTE stdev may change
@@ -26,8 +26,8 @@ for time, line in enumerate(lines):
     sig_freq[time] = freqs
 
 
-#converting frequencies into the nth keys on a standard piano
-#A4 is 440Hz at the 49th key on an 88-key piano 
+# Converting frequencies into the nth keys on a standard piano
+# A4 is 440Hz at the 49th key on an 88-key piano 
 keys = {}
 for i in sig_freq:
     key_numbers = set()
@@ -36,7 +36,7 @@ for i in sig_freq:
     keys[i] = key_numbers
 
 
-#get notes depending on which keys there are
+# Get notes depending on which keys there are
 notes = {}
 for i in keys:
     note = set()
@@ -70,7 +70,7 @@ for i in keys:
     notes[i] = note
 
 
-#this is an extra step for later use of Processing
+# This is an extra step for later use of Processing
 total_num_of_notes = 0
 for i in notes:
     total_num_of_notes += len(notes[i])
