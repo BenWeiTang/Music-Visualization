@@ -10,17 +10,17 @@ void setup() {
   colorMode(HSB, 360, 100, 100);
   background(0);
 
-  //load csv file and read the first element of the first row
-  //which is the total number of notes in the file
+  // Load csv file and read the first element of the first row
+  // Which is the total number of notes in the file
   t = loadTable(file_name);
   TableRow first_row = t.getRow(0);
   int total_notes = first_row.getInt(0);
   TableRow last_row = t.getRow(total_notes);
   int totoal_seconds = last_row.getInt(0);
 
-  //create a 2d string array for every primary element
-  //containing two secondary elements, which represents
-  //time at index 0 and a single note at index 1
+  // Create a 2d string array for every primary element
+  // Containing two secondary elements, which represents
+  // Time at index 0 and a single note at index 1
   time_note = new String[total_notes][2];
   for (int i = 0; i < total_notes; i++) {
     TableRow curr_row = t.getRow(i + 1); //starts from the second row in the file
@@ -30,20 +30,16 @@ void setup() {
     time_note[i][1] = curr_note;
   }
 
-  //declaring and initializing an array of Element objects
+  // Declaring and initializing an array of Element objects
   els = new Element[total_notes];
   for (int i = 0; i < els.length; i++) {
     els[i] = new Element(float(time_note[i][0]), time_note[i][1], totoal_seconds);
   }
-
-  //println(els.length, total_notes);
 }
 
 
 void draw() {
-  //stroke(0, 100);
   for (Element el : els) {
-    //el.showCircle();
     if (frameCount % 10 == 0) {
       el.overlaps(els);
     }
