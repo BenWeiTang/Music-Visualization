@@ -5,5 +5,3 @@
 
 ## Overview
 This project aims to visualize audio input in a comprehensive way in terms of color theory and music theory. The process starts with anaylizing an audio file with a Python library SciPy, using Short-Time Fast Fourier Transform to identify the musical notes in the audio file. The information is then passed into Processing to generate an image as an output. Each note in a piece is an invisible, drifting circle, and when two circles overlap, a line is drawn between their centers. The color of the line is determined by the interval between those two notes. The intervals on the Circle of Fifth are mapped to a color wheel, where a perfect unison corresponds to white and furthering away from the perfect unison results in more vibrant colors.
-
-## Instruction
